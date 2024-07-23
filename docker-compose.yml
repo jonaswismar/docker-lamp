@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+    # PHP Service
+    php:
+        build: './php_docker/'
+        volumes:
+            - ./www/:/var/www/html/
+
+    # Apache2 Service
+    apache:
+        build: './apache_docker/'
+        depends_on:
+            - php
+        ports:
+            - "80:80"
+        volumes:
+            - ./www/:/var/www/html/
+    
+    # MySQL Service
+    mysql:
+        image: mysql:8.0
+        environment:
+      MYSQL_ROOT_PASSWORD: your_password
+    volumes:
+      - mysqldata:/var/lib/mysql
+
+  # phpMyAdmin Service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: mysql
+    depends_on:
+      - mysql
+
+# Volumes
+volumes:
+  mysqldata:
