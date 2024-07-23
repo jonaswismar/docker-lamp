@@ -8,7 +8,7 @@ services:
   php:
     build: ./docker/php
     restart: unless-stopped
-    container_name: docker.php
+    container_name: php
     tty: true
     depends_on:
       - mysql
@@ -37,7 +37,7 @@ services:
    apache:
      build: ./docker/apache
      restart: unless-stopped
-     container_name: docker.apache
+     container_name: apache
      tty: true
      depends_on:
        - php
@@ -70,7 +70,7 @@ services:
   mysql:
     image: mysql:8.4
     restart: unless-stopped
-    container_name: docker.mysql
+    container_name: mysql
     tty: true
     ports:
       - "3306:3306"
@@ -87,7 +87,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: docker.phpmyadmin
+    container_name: phpmyadmin
     tty: true
     depends_on:
       - mysql
