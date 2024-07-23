@@ -34,7 +34,7 @@ services:
   #  volumes:
   #    - .:/var/www
 
-   apache:
+  apache:
      build: ./docker/apache
      restart: unless-stopped
      container_name: apache
