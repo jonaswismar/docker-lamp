@@ -35,19 +35,19 @@ services:
   #    - .:/var/www
 
   apache:
-     build: ./docker/apache
-     restart: unless-stopped
-     container_name: apache
-     tty: true
-     depends_on:
-       - php
-     ports:
-       - "80:80"
-       - "443:443"
-     networks:
-       - lamp.network
-     volumes:
-       - .:/var/www
+    build: ./docker/apache
+    restart: unless-stopped
+    container_name: apache
+    tty: true
+    depends_on:
+      - php
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - lamp.network
+    volumes:
+      - .:/var/www
 
   #  mariadb:
   #    image: mariadb
